@@ -8,7 +8,6 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      /* Fundo em degradê azul escuro */
       background: linear-gradient(180deg, #001f29, #003542);
       color: #f3e9f7;
       display: flex;
@@ -18,15 +17,6 @@
     }
 
     p { line-height: 1.6; }
-
-    .spotify-player {
-      width: 100%;
-      max-width: 360px;
-      margin-top: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      border-radius: 12px;
-      overflow: hidden;
-    }
 
     .contador {
       font-size: 18px;
@@ -113,6 +103,26 @@
       transform: scale(1.2);
     }
 
+    /* 🎵 Carrossel de músicas */
+    .spotify-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      max-width: 360px;
+      margin: 20px auto;
+      padding-bottom: 10px;
+    }
+    .spotify-scroll iframe {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border-radius: 12px;
+    }
+    .spotify-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
     .text-content {
       max-width: 360px;
       padding: 20px;
@@ -125,8 +135,11 @@
   </style>
 </head>
 <body>
-  <div class="spotify-player">
-    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2ux3Sb90r5aA74nLMls1u0?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <!-- 🎵 Carrossel de músicas -->
+  <div class="spotify-scroll">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2ux3Sb90r5aA74nLMls1u0" width="100%" height="80" frameborder="0" allow="encrypted-media"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3U4isOIWM3VvDubwSI3y7a?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allow="encrypted-media"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2o2xhyri4aJUtgMGkf5P0J?utm_source=generator" width="100%" height="80" frameborder="0" allow="encrypted-media"></iframe>
   </div>
 
   <div class="contador" id="contador">Calculando...</div>
@@ -185,45 +198,45 @@
 
   <div class="text-content">
     <p>6 meses…</p>
-  <p>6 meses incríveis</p>
-<br>
-<p>Que se parecem mais de um ano de tantas coisas que ja vivemos...</p>
-<p>É difícil expressar em palavras tudo que sinto por ti, mas aqui deixo uma pequena mensagem tentando expressar um pouco disso.</p>
+    <p>6 meses incríveis</p>
+    <br>
+    <p>Que se parecem mais de um ano de tantas coisas que ja vivemos...</p>
+    <p>É difícil expressar em palavras tudo que sinto por ti, mas aqui deixo uma pequena mensagem tentando expressar um pouco disso.</p>
 
-<p>Desde o início vivemos algo muito intenso, muito leve e muito feliz… e espero que a gente nunca perca isso.</p>
-<p>Estar contigo é sempre um momento de paz, felicidade e leveza. A cada despedida, fico ansioso para o nosso próximo encontro. E a cada encontro fico ansioso para vivermos juntos a vida que almejamos, conquistando nossas "coisinhas", na nossa casinha, colecinando viagens... além de claro, mais apaixonado por ti.</p>
+    <p>Desde o início vivemos algo muito intenso, muito leve e muito feliz… e espero que a gente nunca perca isso.</p>
+    <p>Estar contigo é sempre um momento de paz, felicidade e leveza. A cada despedida, fico ansioso para o nosso próximo encontro. E a cada encontro fico ansioso para vivermos juntos a vida que almejamos, conquistando nossas "coisinhas", na nossa casinha, colecinando viagens... além de claro, mais apaixonado por ti.</p>
 
-<p>Nunca se esqueça, da mulher incrível e admirável que você é, do seu jeitinho, carinhosa, delicada, inteligente, esforçada, educada, linda e de um coração incrível. </p>
+    <p>Nunca se esqueça, da mulher incrível e admirável que você é, do seu jeitinho, carinhosa, delicada, inteligente, esforçada, educada, linda e de um coração incrível. </p>
 
-<p>Espero também que nunca se esqueça que estarei sempre aqui por ti, seja em momentos bons ou ruins. Jamais medirei esforços para que eu possa contribuir nem que seja o mínimo possível, para colocar um sorriso no seu rosto, para que você seja tratada e amada como de fato merece ser, para que possamos seguir juntos construindo nossa relação da melhor maneira possível.</p>
-<p>Uma relação que vc se sinta bem, segura, cuidada, seja com um beijo, um abraço, uma frase ou até mesmo um olhar…</p>
-<br>
-<p>Eu amo nossa relação</p>
-<p>Eu amo nossas conversas</p>
-<p>Eu amo nossas comilanças</p>
-<p>Eu amo nossas viagens</p>
-<p>Eu amo nossos passeios</p>
-<p>Eu amo nossos momentos de preguicinha</p>
-<p>Eu amo nossas vibes “fitness”</p>
-<p>Eu amo nossos planos para o futuro</p>
-<p>Eu amo ser seu namorado</p>
-<p>…</p>
-<p>Eu amo seu jeito</p>
-<p>Eu amo sua voz</p>
-<p>Eu amo seu sorriso</p>
-<p>Eu amo seu corpo</p>
-<p>…</p>
-<br>
-<p>EU AMO VOCÊ</p>
-<br>
-<p>E são apenas 6 meses... que seja apenas o inicio de tudo que ainda temos para viver e conquistar!</p>
-<p>Que tenhamos sempre essa relação tranquila, leve, respeitosa e cheia de amor e diversão.</p>
-<br>
-<p>Nunca se esqueça, para o que precisar, estarei aqui por ti. </p>
-<p>EU TE AMO MUITO</p>
-<br>
-<p>Com carinho…</p>
-<p>Matheus</p>
+    <p>Espero também que nunca se esqueça que estarei sempre aqui por ti, seja em momentos bons ou ruins. Jamais medirei esforços para que eu possa contribuir nem que seja o mínimo possível, para colocar um sorriso no seu rosto, para que você seja tratada e amada como de fato merece ser, para que possamos seguir juntos construindo nossa relação da melhor maneira possível.</p>
+    <p>Uma relação que vc se sinta bem, segura, cuidada, seja com um beijo, um abraço, uma frase ou até mesmo um olhar…</p>
+    <br>
+    <p>Eu amo nossa relação</p>
+    <p>Eu amo nossas conversas</p>
+    <p>Eu amo nossas comilanças</p>
+    <p>Eu amo nossas viagens</p>
+    <p>Eu amo nossos passeios</p>
+    <p>Eu amo nossos momentos de preguicinha</p>
+    <p>Eu amo nossas vibes “fitness”</p>
+    <p>Eu amo nossos planos para o futuro</p>
+    <p>Eu amo ser seu namorado</p>
+    <p>…</p>
+    <p>Eu amo seu jeito</p>
+    <p>Eu amo sua voz</p>
+    <p>Eu amo seu sorriso</p>
+    <p>Eu amo seu corpo</p>
+    <p>…</p>
+    <br>
+    <p>EU AMO VOCÊ</p>
+    <br>
+    <p>E são apenas 6 meses... que seja apenas o inicio de tudo que ainda temos para viver e conquistar!</p>
+    <p>Que tenhamos sempre essa relação tranquila, leve, respeitosa e cheia de amor e diversão.</p>
+    <br>
+    <p>Nunca se esqueça, para o que precisar, estarei aqui por ti. </p>
+    <p>EU TE AMO MUITO</p>
+    <br>
+    <p>Com carinho…</p>
+    <p>Matheus</p>
   </div>
 
   <script>
@@ -247,4 +260,7 @@
   </script>
 </body>
 </html>
+
+
+
 
