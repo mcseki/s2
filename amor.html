@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forever us</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Fundo em degradê azul escuro */
+      background: linear-gradient(180deg, #001f29, #003542);
+      color: #f3e9f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    p { line-height: 1.6; }
+
+    .spotify-player {
+      width: 100%;
+      max-width: 360px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .contador {
+      font-size: 18px;
+      font-weight: bold;
+      background: rgba(255, 182, 193, 0.1);
+      border: 2px solid #ffb6c1;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255,182,193,0.4);
+      margin: 20px 0;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+
+    .contador span {
+      display: inline-block;
+      margin: 0 6px;
+      color: #ffccd5;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 8px rgba(255,182,193,0.3); }
+      50% { box-shadow: 0 0 20px rgba(255,182,193,0.7); }
+      100% { box-shadow: 0 0 8px rgba(255,182,193,0.3); }
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      height: 400px;
+      margin: 20px 0 10px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+
+    .carousel-images img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-images img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+    .carousel-button:hover { background-color: rgba(0,0,0,0.6); }
+    .carousel-button.left { left: 10px; }
+    .carousel-button.right { right: 10px; }
+
+    .indicators { display: flex; justify-content: center; margin-top: 8px; }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      background-color: #aaa;
+      border-radius: 50%;
+      margin: 0 4px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .indicator.active {
+      background-color: #ffb6c1;
+      transform: scale(1.2);
+    }
+
+    .text-content {
+      max-width: 360px;
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="spotify-player">
+    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2ux3Sb90r5aA74nLMls1u0?utm_source=generator" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <div class="contador" id="contador">Calculando...</div>
+
+  <script>
+    const dataPassada = new Date('2025-03-02 22:00:00');
+    function atualizarContador() {
+      const agora = new Date();
+      let diferenca = agora - dataPassada;
+      if (diferenca < 0) {
+        document.getElementById('contador').innerHTML = "Data no futuro!";
+        return;
+      }
+      const segundosTotais = Math.floor(diferenca / 1000);
+      const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
+      const meses = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (30.44 * 24 * 60 * 60));
+      const dias = Math.floor((segundosTotais % (30.44 * 24 * 60 * 60)) / (24 * 60 * 60));
+      const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
+      const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
+      const segundos = segundosTotais % 60;
+      document.getElementById('contador').innerHTML = `
+        <span><strong>${anos}</strong> anos</span>
+        <span><strong>${meses}</strong> meses</span>
+        <span><strong>${dias}</strong> dias</span>
+        <span><strong>${horas}</strong> hrs</span>
+        <span><strong>${minutos}</strong> mins</span>
+        <span><strong>${segundos}</strong> segs</span>
+      `;
+    }
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  </script>
+
+  <div class="carousel-container">
+    <button class="carousel-button left" onclick="changeImage(-1)">❮</button>
+    <div class="carousel-images" id="carouselImages">
+      <img src="imagens/alianca.jpg" class="active" alt="Imagem 1">
+      <img src="imagens/andando.jpg" alt="Imagem 2">
+      <img src="imagens/animalia.jpg" alt="Imagem 3">
+      <img src="imagens/belari.jpg" alt="Imagem 4">
+      <img src="imagens/ibira.jpg" alt="Imagem 5">
+      <img src="imagens/liberdade.jpg" alt="Imagem 6">
+      <img src="imagens/polaroid.jpg" alt="Imagem 7">
+      <img src="imagens/praia.jpg" alt="Imagem 8">
+      <img src="imagens/ycatu.jpg" alt="Imagem 9">
+      <img src="imagens/carrinho.jpg" alt="Imagem 10">
+      <img src="imagens/cineminhaa.jpg" alt="Imagem 11">
+      <img src="imagens/espreme.jpg" alt="Imagem 12">
+      <img src="imagens/wee.jpg" alt="Imagem 13">
+      <img src="imagens/sinalzin.jpg" alt="Imagem 14">
+      <img src="imagens/trilha.jpg" alt="Imagem 15">
+    </div>
+    <button class="carousel-button right" onclick="changeImage(1)">❯</button>
+  </div>
+  <div class="indicators" id="indicators"></div>
+
+  <div class="text-content">
+    <p>6 meses…</p>
+  <p>6 meses incríveis</p>
+<br>
+<p>Que se parecem mais de um ano de tantas coisas que ja vivemos...</p>
+<p>É difícil expressar em palavras tudo que sinto por ti, mas aqui deixo uma pequena mensagem tentando expressar um pouco disso.</p>
+
+<p>Desde o início vivemos algo muito intenso, muito leve e muito feliz… e espero que a gente nunca perca isso.</p>
+<p>Estar contigo é sempre um momento de paz, felicidade e leveza. A cada despedida, fico ansioso para o nosso próximo encontro. E a cada encontro fico ansioso para vivermos juntos a vida que almejamos, conquistando nossas "coisinhas", na nossa casinha, colecinando viagens... além de claro, mais apaixonado por ti.</p>
+
+<p>Nunca se esqueça, da mulher incrível e admirável que você é, do seu jeitinho carinhosa, delicada, inteligente, esforçada, educada, linda e de um coração incrível. </p>
+
+<p>Espero também que nunca se esqueça que estarei sempre aqui por ti, seja em momentos bons ou ruins. Jamais medirei esforços para que eu possa contribuir, nem que seja o mínimo possível, para colocar um sorriso no seu rosto, para que você seja tratada e amada como de fato merece ser, para que possamos seguir juntos construindo nossa relação da melhor maneira possível.</p>
+<p>Uma relação que vc se sinta bem, segura, cuidada, seja com um beijo, um abraço, uma frase ou até mesmo um olhar…</p>
+<br>
+<p>Eu amo nossa relação</p>
+<p>Eu amo nossas conversas</p>
+<p>Eu amo nossas comilanças</p>
+<p>Eu amo nossas viagens</p>
+<p>Eu amo nossos passeios</p>
+<p>Eu amo nossos momentos de preguicinha</p>
+<p>Eu amo nossas vibes “fitness”</p>
+<p>Eu amo nossos planos para o futuro</p>
+<p>Eu amo ser seu namorado</p>
+<p>…</p>
+<p>Eu amo seu jeito</p>
+<p>Eu amo sua voz</p>
+<p>Eu amo seu sorriso</p>
+<p>Eu amo seu corpo</p>
+<p>…</p>
+<br>
+<p>EU AMO VOCÊ</p>
+<br>
+<p>E são apenas 6 meses... que seja apenas o inicio de tudo que ainda temos para viver e conquistar!</p>
+<p>Que tenhamos sempre essa relação tranquila, leve, respeitosa e cheia de amor e diversão.</p>
+<br>
+<p>Nunca se esqueça, para o que precisar, estarei aqui por ti. </p>
+<p>EU TE AMO MUITO</p>
+<br>
+<p>Com carinho…</p>
+<p>Matheus</p>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll("#carouselImages img");
+    const indicatorsContainer = document.getElementById("indicators");
+    let currentIndex = 0;
+    images.forEach((_, index) => {
+      const dot = document.createElement("div");
+      dot.classList.add("indicator");
+      if (index === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => { currentIndex = index; updateCarousel(); });
+      indicatorsContainer.appendChild(dot);
+    });
+    function updateCarousel() {
+      images.forEach((img, index) => { img.classList.toggle("active", index === currentIndex); });
+      const dots = document.querySelectorAll(".indicator");
+      dots.forEach((dot, index) => { dot.classList.toggle("active", index === currentIndex); });
+    }
+    function changeImage(direction) { currentIndex = (currentIndex + direction + images.length) % images.length; updateCarousel(); }
+    setInterval(() => { changeImage(1); }, 5000);
+  </script>
+</body>
+</html>
